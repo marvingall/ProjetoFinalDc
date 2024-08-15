@@ -1,7 +1,7 @@
 'use client';
 
 import InputLabel from "@/components/InputLabel/InputLabel"
-import { Pen, PlusCircle, Trash } from "@phosphor-icons/react/dist/ssr";
+import { CheckCircle, Pen, PlusCircle, Trash } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
 
 export default function RoomRegister(){
@@ -48,7 +48,7 @@ export default function RoomRegister(){
         {roomFields.map((field, fieldIdx) => (
             <div className="flex gap-2" key={fieldIdx}>
                 <input className="rounded disabled:bg-gray-300" disabled={!field.editable} />
-                <Pen onClick={() => switchEditable(fieldIdx)} size={20} className="text-emerald-800 cursor-pointer" />
+                {field.editable ? <CheckCircle weight="fill" size={20} className="text-emerald-800 cursor-pointer" onClick={() => switchEditable(fieldIdx)} /> : <Pen size={20} className="text-emerald-800 cursor-pointer" onClick={() => switchEditable(fieldIdx)} />}
                 <Trash size={20} className="text-emerald-800 cursor-pointer" />
             </div>
         ))}
