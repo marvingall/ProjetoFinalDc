@@ -5,32 +5,52 @@ import { CheckCircle, Pen, PlusCircle, Trash } from "@phosphor-icons/react/dist/
 import { useState } from "react";
 
 export default function RoomRegister(){
-
-    const [roomFields, setRoomFields] = useState([
-        {
-            editable: false,
-            value: ""
-        }
-    ]);
+    const [roomFields, setRoomFields] = useState([]);
 
     function switchEditable(fieldIdx){
         const newRoomFields = roomFields.map((field, idx) => {
+            const isEmpty = field.value === "";
+
             if(idx === fieldIdx){
                 return {
                     ...field,
-                    editable: !field.editable
+                    editable: !isEmpty ? !field.editable : field.editable
+                }
+            } else {
+                return {
+                    ...field,
+                    editable: false
                 }
             }
-            return field;
         });
 
         setRoomFields(newRoomFields);  
     }
 
     function addField(){
-        if (roomFields.every(field => !field.editable)){
-            setRoomFields([...roomFields, {editable: false, value: ""}]);
+        if (roomFields.every(field => !field.editable) && roomFields.every(field => field.value !== "")){
+            setRoomFields([...roomFields, {editable: true, value: ""}]);
         }
+    }
+
+    function onChangeField(e){
+        const newRoomFields = roomFields.map((field, fieldIdx) => {
+            if(fieldIdx === Number(e.target.id)){
+                return {
+                    ...field,
+                    value: e.target.value
+                }
+            }
+            return field;
+        });
+
+        setRoomFields(newRoomFields);
+    }
+
+    function deleteField(e){
+        const newRoomFields = roomFields.filter((field, idx) => idx !== Number(e.target.id));
+
+        setRoomFields(newRoomFields);
     }
 
 
@@ -47,10 +67,10 @@ export default function RoomRegister(){
         </div>
         {roomFields.map((field, fieldIdx) => (
             <div className="flex gap-2" key={fieldIdx}>
-                <input className="rounded disabled:bg-gray-300" disabled={!field.editable} />
+                <input id={fieldIdx} value={field.value} onChange={onChangeField} className="rounded disabled:bg-gray-300" disabled={!field.editable} />
                 {field.editable ? <CheckCircle weight="fill" size={20} className="text-emerald-800 cursor-pointer" onClick={() => switchEditable(fieldIdx)} /> : <Pen size={20} className="text-emerald-800 cursor-pointer" onClick={() => switchEditable(fieldIdx)} />}
-                <Trash size={20} className="text-emerald-800 cursor-pointer" />
+                <Trash id={fieldIdx} onClick={deleteField} size={20} className="text-emerald-800 cursor-pointer" />
             </div>
-        ))}
+        ))} 
     </main>
 }
