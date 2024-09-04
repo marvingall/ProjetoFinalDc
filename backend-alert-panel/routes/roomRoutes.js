@@ -3,4 +3,6 @@ import RoomController from '../controllers/roomController';
 
 const router = express.Router();
 
-router.post('/room', RoomController.registerRoom);
+router.post('/register-room', RoomController.registerRoom); 
+
+export default router;
