@@ -5,10 +5,7 @@ let client;
 
 const connectDB = async () => {
   try {
-    client = new MongoClient(uri, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    client = new MongoClient(uri);
 
     await client.connect();
     console.log('MongoDB connected successfully');

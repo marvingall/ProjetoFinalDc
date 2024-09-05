@@ -1,19 +1,24 @@
-import { connectDB, getDB } from "../config/db";
+import { getDB } from "../config/db.js";
+import RoomRepository from "../repositories/roomRepository.js";
 
 const RoomController = {
     registerRoom: async (req, res) => {
-        await connectDB();
+        const {floor, number, studentsCapacity, resources} = req.body;
+
+        if (!floor || !number || !studentsCapacity) {
+            return res.status(400).send('Invalid data');
+        }
 
         const db = await getDB();
         
-        db.collection('rooms').insertOne({
-            name: 'Sala 1',
-            description: 'Sala para reuniões',
-            capacity: 10,
-            resources: ['Projetor', 'TV', 'Ar condicionado'],
+        RoomRepository.createRoom(db, {
+            floor,
+            number,
+            studentsCapacity,
+            resources
         });
 
-        res.send('Criando uma sala');
+        res.status(201).send('Room registered successfully');
     }
 }
 
