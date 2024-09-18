@@ -17,7 +17,8 @@ app.use("/room", roomRoutes)
 
 app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);
-    await connectDB() 
+
+    await connectDB()
 });
 
 export default app;
