@@ -73,3 +73,5 @@ const EmployeeController = {
         res.send('Employee deleted successfully');
     }
 }
+
+export default EmployeeController;

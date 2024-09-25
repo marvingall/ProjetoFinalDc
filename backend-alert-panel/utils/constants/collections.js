@@ -1,2 +1,2 @@
 export const ROOMS_COLLECTION = 'rooms';
-export const TICKETS_COLLECTION = 'tickets';
+export const EMPLOYEES_COLLECTION = 'employees';

@@ -23,3 +23,5 @@ const EmployeeRepository = {
         await db.collection(EMPLOYEES_COLLECTION).deleteOne({ _id: idAsObjectId });
     }
 }
+
+export default EmployeeRepository;
