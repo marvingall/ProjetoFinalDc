@@ -2,6 +2,7 @@ import express from 'express';
 import logMiddleware from './middlewares/logMiddleware.js';
 import rateLimitMiddleware from './middlewares/rateLimitMiddleware.js';
 import roomRoutes from './routes/roomRoutes.js';
+import employeeRoutes from './routes/employeeRoutes.js';
 import { connectDB } from './config/db.js';
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(logMiddleware);
 app.use(rateLimitMiddleware)
 
 app.use("/room", roomRoutes)
+app.use("/employees", employeeRoutes)
 
 app.listen(PORT, async () => {
     console.log(`Server is running on port ${PORT}`);
