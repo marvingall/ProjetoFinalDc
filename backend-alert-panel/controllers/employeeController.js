@@ -1,4 +1,4 @@
-import EmployeeRepository from "../repositories/employeeRepository";
+import EmployeeRepository from "../repositories/employeeRepository.js";
 
 const EmployeeController = {
     getEmployees: async (req, res) => {

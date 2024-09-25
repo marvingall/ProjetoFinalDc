@@ -1,4 +1,4 @@
-import { EMPLOYEES_COLLECTION } from "../utils/constants/collections";
+import { EMPLOYEES_COLLECTION } from "../utils/constants/collections.js";
 
 const EmployeeRepository = {
     getEmployeeById: async  (id) => {
