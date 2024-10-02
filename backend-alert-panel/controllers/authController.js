@@ -19,7 +19,7 @@ const AuthController = {
             return res.status(401).send('Invalid credentials');
         }
 
-        res.send('Logged in successfully');
+        res.send(user);
     },
     register: async (req, res) => {
         const { email, password } = req.body;

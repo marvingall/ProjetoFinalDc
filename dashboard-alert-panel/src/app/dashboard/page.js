@@ -5,10 +5,13 @@ import ScreenModal from "@/components/ScreenModal/ScreenModal";
 import SmallCard from "@/components/SmallCard/SmallCard";
 import { getRooms } from "@/services/roomServices";
 import { useEffect, useState } from "react";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
   const [openedModal, setOpenedModal] = useState(null);
   const [rooms, setRooms] = useState([]);
+
+  const router = useRouter()
 
   useEffect(() => {
     fetchRooms();
@@ -20,6 +23,14 @@ export default function Home() {
     if(response.ok){
       const rooms = await response.json();
       setRooms(rooms);
+    }
+  }
+
+  function validateUserIsLogged(){
+    const user = localStorage.getItem('user');
+
+    if(!user){
+      router.push('/');
     }
   }
 
