@@ -36,7 +36,7 @@ export default function Home() {
   return (
       <main className="flex min-h-screen gap-4 flex-grow flex-col items-center justify-center p-6">
         <InputLabel label={"Email"} onChange={(e) => setEmail(e.target.value)} />
-        <InputLabel label={"Password"} onChange={(e) => setPassword(e.target.value)} />
+        <InputLabel type={"Password"} label={"Password"} onChange={(e) => setPassword(e.target.value)} />
         <RoundedButton onClick={handleLogin} text={"Login"} />
       </main>
   );
